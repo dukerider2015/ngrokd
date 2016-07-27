@@ -25,7 +25,6 @@ RUN apt-get update \
                           golang \
                           mercurial \
     
-    && go version \
 
 VOLUME $NGROK_DIR
 EXPOSE 80 443 4443
