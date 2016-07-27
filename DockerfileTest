@@ -5,19 +5,6 @@
 FROM debian:jessie
 MAINTAINER kev <noreplay@easypi.info>
 
-ENV NGROK_GIT https://github.com/inconshreveable/ngrok.git
-ENV NGROK_BASE_DOMAIN dukerider.tk
-ENV NGROK_DIR /ngrok
-ENV NGROK_TMP /tmp/ngrok
-
-ENV NGROK_CA_KEY assets/client/tls/ngrokroot.key
-ENV NGROK_CA_CRT assets/client/tls/ngrokroot.crt
-ENV NGROK_SERVER_KEY assets/server/tls/snakeoil.key
-ENV NGROK_SERVER_CSR assets/server/tls/snakeoil.csr
-ENV NGROK_SERVER_CRT assets/server/tls/snakeoil.crt
-
-WORKDIR $NGROK_DIR
-
 RUN apt-get update \
     && apt-get install -y build-essential \
                           curl \
