@@ -24,37 +24,8 @@ RUN apt-get update \
                           git \
                           golang \
                           mercurial \
-    && git clone ${NGROK_GIT} ${NGROK_TMP} \
-    && cd ${NGROK_TMP} \
-    && openssl genrsa -out ${NGROK_CA_KEY} 2048 \
-    && openssl req -new -x509 -nodes -key ${NGROK_CA_KEY} -subj "/CN=${NGROK_BASE_DOMAIN}" -days 365 -out ${NGROK_CA_CRT} \
-    && openssl genrsa -out ${NGROK_SERVER_KEY} 2048 \
-    && openssl req -new -key ${NGROK_SERVER_KEY} -subj "/CN=${NGROK_BASE_DOMAIN}" -out ${NGROK_SERVER_CSR} \
-    && openssl x509 -req -in ${NGROK_SERVER_CSR} -CA ${NGROK_CA_CRT} -CAkey ${NGROK_CA_KEY} -CAcreateserial -days 365 -out ${NGROK_SERVER_CRT} \
-    && for GOOS in darwin linux windows; \
-       do \
-         for GOARCH in 386 amd64 arm; \
-         do \
-           echo "=== $GOOS-$GOARCH ==="; \
-           export GOOS GOARCH; \
-           make release-all; \
-           echo "=== done ==="; \
-         done \
-       done \
-    && mv ${NGROK_CA_KEY} \
-          ${NGROK_CA_CRT} \
-          ${NGROK_SERVER_KEY} \
-          ${NGROK_SERVER_CSR} \
-          ${NGROK_SERVER_CRT} \
-          ./bin/* \
-          ${NGROK_DIR} \
-    && apt-get purge --auto-remove -y build-essential \
-                                      curl \
-                                      git \
-                                      golang \
-                                      mercurial \
-    && cd ${NGROK_DIR} \
-    && rm -rf ${NGROK_TMP}
+    
+    && go version \
 
 VOLUME $NGROK_DIR
 EXPOSE 80 443 4443
