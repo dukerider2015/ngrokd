@@ -24,7 +24,4 @@ RUN apt-get update \
                           git \
                           golang \
                           mercurial \
-    
 
-VOLUME $NGROK_DIR
-EXPOSE 80 443 4443
