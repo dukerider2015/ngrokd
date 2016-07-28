@@ -76,7 +76,6 @@ RUN apt-get update \
     && cd ${NGROK_DIR} \
     && rm -rf ${NGROK_TMP}
 
-VOLUME $NGROK_DIR
 EXPOSE 40005 4443 10022
 
 ENTRYPOINT ["./ngrokd"]
