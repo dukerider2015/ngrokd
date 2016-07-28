@@ -54,7 +54,7 @@ RUN apt-get update \
          do \
            echo "=== $GOOS-$GOARCH ==="; \
            export GOOS GOARCH; \
-           make release-server; \
+           make release-all; \
            echo "=== done ==="; \
          done \
        done \
