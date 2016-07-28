@@ -48,13 +48,13 @@ RUN apt-get update \
     && openssl genrsa -out ${NGROK_SERVER_KEY} 2048 \
     && openssl req -new -key ${NGROK_SERVER_KEY} -subj "/CN=${NGROK_BASE_DOMAIN}" -out ${NGROK_SERVER_CSR} \
     && openssl x509 -req -in ${NGROK_SERVER_CSR} -CA ${NGROK_CA_CRT} -CAkey ${NGROK_CA_KEY} -CAcreateserial -days 365 -out ${NGROK_SERVER_CRT} \
-    && for GOOS in linux; \
+    && for GOOS in darwin linux windows; \
        do \
          for GOARCH in 386 amd64 arm; \
          do \
            echo "=== $GOOS-$GOARCH ==="; \
            export GOOS GOARCH; \
-           make release-all; \
+           make release-server; \
            echo "=== done ==="; \
          done \
        done \
