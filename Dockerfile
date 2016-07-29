@@ -73,7 +73,7 @@ RUN apt-get update \
                                       golang \
                                       mercurial \
     && cd / \
-    && cp -rf ${NGROK_DIR} /var \
+    && cp -rf ${NGROK_DIR} /var/ngrok \
     && cd ${NGROK_DIR} \
     && rm -rf ${NGROK_TMP}
 
