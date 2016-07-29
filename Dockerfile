@@ -22,8 +22,6 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GOOS linux
-ENV GOARCH amd64
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 ENV NGROK_GIT https://github.com/inconshreveable/ngrok.git
@@ -53,9 +51,9 @@ RUN apt-get update \
     && openssl genrsa -out ${NGROK_SERVER_KEY} 2048 \
     && openssl req -new -key ${NGROK_SERVER_KEY} -subj "/CN=${NGROK_BASE_DOMAIN}" -out ${NGROK_SERVER_CSR} \
     && openssl x509 -req -in ${NGROK_SERVER_CSR} -CA ${NGROK_CA_CRT} -CAkey ${NGROK_CA_KEY} -CAcreateserial -days 5000 -out ${NGROK_SERVER_CRT} \
-    && for GOOS in linux windows; \
+    && for GOOS in windows linux; \
        do \
-         for GOARCH in amd64 arm; \
+         for GOARCH in 386 amd64 arm; \
          do \
            echo "=== $GOOS-$GOARCH ==="; \
            export GOOS GOARCH; \
