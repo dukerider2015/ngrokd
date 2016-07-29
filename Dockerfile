@@ -45,7 +45,6 @@ RUN apt-get update \
                           mercurial \
     && git clone ${NGROK_GIT} ${NGROK_TMP} \
     && cd ${NGROK_TMP} \
-    && git checkout 1.7.1 \
     && openssl genrsa -out ${NGROK_CA_KEY} 2048 \
     && openssl req -new -x509 -nodes -key ${NGROK_CA_KEY} -subj "/CN=${NGROK_BASE_DOMAIN}" -days 5000 -out ${NGROK_CA_CRT} \
     && openssl genrsa -out ${NGROK_SERVER_KEY} 2048 \
