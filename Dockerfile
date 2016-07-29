@@ -25,7 +25,7 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 ENV NGROK_GIT https://github.com/inconshreveable/ngrok.git
-ENV NGROK_BASE_DOMAIN daoapp.io
+ENV NGROK_BASE_DOMAIN *.daoapp.io
 ENV NGROK_DIR /ngrok
 ENV NGROK_TMP /tmp/ngrok
 
