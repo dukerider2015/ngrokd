@@ -22,7 +22,8 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-
+ENV GOOS linux
+ENV GOARCH amd64
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 ENV NGROK_GIT https://github.com/inconshreveable/ngrok.git
